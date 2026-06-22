@@ -1,33 +1,40 @@
-# Cortex - System Documentation
+        # Cortex - Compiled System Reference
 
-**Document version:** 1.14 (2026-03-20) - Type-checking hygiene pass
-**Protocol:** Forge Documentation Protocol v1
+        **Designation:** cx
+        **Document role:** Canonical compiled technical reference for the Cortex local file-intelligence service
+        **Source:** `doc/system/`
+        **Build command:** `bash doc/system/BUILD.sh`
+        **Document version:** 2.0 (2026-06-22) - canonical compliance migration
+        **Protocol:** BDS Documentation Protocol v2.0; BDS Repo Documentation System Canonical Compliance Standard
 
-| Key | Value |
-|-----|-------|
-| **Project** | Cortex |
-| **Prefix** | `cx` |
-| **Output** | `doc/cxSYSTEM.md` |
+        > **Generated artifact warning:** `doc/cxSYSTEM.md` is assembled output. Edit
+        > the source modules under `doc/system/` and rebuild. Hand edits to the
+        > compiled artifact are overwritten by the next build.
 
-This `doc/system/` tree is the assembled system reference for Cortex as a bounded local file-intelligence service.
-It reflects the current repo state through Wave 3 hardening, audit-remediation tightening, the shared source-lane framework, Runtime Slices 1 through 9, the post-Slice-7 hardening and lane-admission-governance pass, bounded ODT lane delivery, bounded EPUB lane delivery, the post-Slice-8 governance execution, the post-Slice-9 governance selection, the bounded special-track Scrivener Stage 1 authority-recon runtime slice, the current Scrivener Stage 2 planning-control packet, the explicit Stage 2 implementation-remains-blocked decision, the PDF lane admission hardening and structured probe pass, and the mypy type-checking hygiene pass.
+        Assembly contract:
 
-Assembly contract:
+        - Command: `bash doc/system/BUILD.sh`
+        - Validation: `bash doc/system/validate_snapshots.sh` runs during assembly
+        - Primary output: `doc/cxSYSTEM.md`
 
-- Command: `bash doc/system/BUILD.sh`
-- Output: `doc/cxSYSTEM.md`
+        This `doc/system/` tree is the canonical source of truth for Cortex. It uses
+        explicit **truth classes**: canonical facts define repo role, authority
+        boundaries, contract behavior, runtime behavior, and verification doctrine;
+        snapshot facts are dated, audit-derived counts and current implementation
+        inventory that may drift between audits.
 
-| Part | File | Contents |
-|------|------|----------|
-| SS1 | [01-overview-charter.md](01-overview-charter.md) | Mission, role, success posture, and current bounded runtime baseline |
-| SS2 | [02-boundaries-and-doctrine.md](02-boundaries-and-doctrine.md) | Authority boundaries, syntax-before-semantics doctrine, and anti-control-plane posture |
-| SS3 | [03-contract-surface.md](03-contract-surface.md) | Intake, extraction, retrieval, handoff, service-status, and diagnostics surfaces |
-| SS4 | [04-validation-and-delivery.md](04-validation-and-delivery.md) | Validation wiring, schema-backed enforcement, delivered slices, and current delivery posture |
+        | Part | File | Contents |
+        | --- | --- | --- |
+        | §1 | `00_overview/01-overview-charter.md` | 1. Overview and Charter |
+| §2 | `10_service-contract/03-contract-surface.md` | 3. Contract Surface |
+| §3 | `20_runtime/05-runtime-baseline.md` | Runtime Baseline |
+| §4 | `30_dependencies/06-dependencies.md` | Dependencies |
+| §5 | `40_governance/02-boundaries-and-doctrine.md` | 2. Boundaries and Doctrine |
+| §6 | `50_operations/04-validation-and-delivery.md` | 4. Validation and Delivery |
+| §7 | `99_appendices/90-appendices.md` | Appendices |
 
-## Quick Assembly
+        ## Quick Assembly
 
-```bash
-bash doc/system/BUILD.sh
-```
-
-*Last updated: 2026-03-20*
+        ```bash
+        bash doc/system/BUILD.sh
+        ```

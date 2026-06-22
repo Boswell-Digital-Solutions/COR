@@ -1,36 +1,43 @@
-# Cortex - System Documentation
+        # Cortex - Compiled System Reference
 
-**Document version:** 1.14 (2026-03-20) - Type-checking hygiene pass
-**Protocol:** Forge Documentation Protocol v1
+        **Designation:** cx
+        **Document role:** Canonical compiled technical reference for the Cortex local file-intelligence service
+        **Source:** `doc/system/`
+        **Build command:** `bash doc/system/BUILD.sh`
+        **Document version:** 2.0 (2026-06-22) - canonical compliance migration
+        **Protocol:** BDS Documentation Protocol v2.0; BDS Repo Documentation System Canonical Compliance Standard
 
-| Key | Value |
-|-----|-------|
-| **Project** | Cortex |
-| **Prefix** | `cx` |
-| **Output** | `doc/cxSYSTEM.md` |
+        > **Generated artifact warning:** `doc/cxSYSTEM.md` is assembled output. Edit
+        > the source modules under `doc/system/` and rebuild. Hand edits to the
+        > compiled artifact are overwritten by the next build.
 
-This `doc/system/` tree is the assembled system reference for Cortex as a bounded local file-intelligence service.
-It reflects the current repo state through Wave 3 hardening, audit-remediation tightening, the shared source-lane framework, Runtime Slices 1 through 9, the post-Slice-7 hardening and lane-admission-governance pass, bounded ODT lane delivery, bounded EPUB lane delivery, the post-Slice-8 governance execution, the post-Slice-9 governance selection, the bounded special-track Scrivener Stage 1 authority-recon runtime slice, the current Scrivener Stage 2 planning-control packet, the explicit Stage 2 implementation-remains-blocked decision, the PDF lane admission hardening and structured probe pass, and the mypy type-checking hygiene pass.
+        Assembly contract:
 
-Assembly contract:
+        - Command: `bash doc/system/BUILD.sh`
+        - Validation: `bash doc/system/validate_snapshots.sh` runs during assembly
+        - Primary output: `doc/cxSYSTEM.md`
 
-- Command: `bash doc/system/BUILD.sh`
-- Output: `doc/cxSYSTEM.md`
+        This `doc/system/` tree is the canonical source of truth for Cortex. It uses
+        explicit **truth classes**: canonical facts define repo role, authority
+        boundaries, contract behavior, runtime behavior, and verification doctrine;
+        snapshot facts are dated, audit-derived counts and current implementation
+        inventory that may drift between audits.
 
-| Part | File | Contents |
-|------|------|----------|
-| SS1 | [01-overview-charter.md](01-overview-charter.md) | Mission, role, success posture, and current bounded runtime baseline |
-| SS2 | [02-boundaries-and-doctrine.md](02-boundaries-and-doctrine.md) | Authority boundaries, syntax-before-semantics doctrine, and anti-control-plane posture |
-| SS3 | [03-contract-surface.md](03-contract-surface.md) | Intake, extraction, retrieval, handoff, service-status, and diagnostics surfaces |
-| SS4 | [04-validation-and-delivery.md](04-validation-and-delivery.md) | Validation wiring, schema-backed enforcement, delivered slices, and current delivery posture |
+        | Part | File | Contents |
+        | --- | --- | --- |
+        | §1 | `00_overview/01-overview-charter.md` | 1. Overview and Charter |
+| §2 | `10_service-contract/03-contract-surface.md` | 3. Contract Surface |
+| §3 | `20_runtime/05-runtime-baseline.md` | Runtime Baseline |
+| §4 | `30_dependencies/06-dependencies.md` | Dependencies |
+| §5 | `40_governance/02-boundaries-and-doctrine.md` | 2. Boundaries and Doctrine |
+| §6 | `50_operations/04-validation-and-delivery.md` | 4. Validation and Delivery |
+| §7 | `99_appendices/90-appendices.md` | Appendices |
 
-## Quick Assembly
+        ## Quick Assembly
 
-```bash
-bash doc/system/BUILD.sh
-```
-
-*Last updated: 2026-03-20*
+        ```bash
+        bash doc/system/BUILD.sh
+        ```
 
 ---
 
@@ -110,70 +117,6 @@ This section is grounded in:
 - `PROJECT_CHARTER.md`
 - `PHASE_1_PLAN.md`
 - `README.md`
-
----
-
-# 2. Boundaries and Doctrine
-
-## Authority line
-
-Cortex owns:
-
-- intake contracts
-- syntax-level extraction
-- provenance and completeness signaling
-- retrieval-preparation support
-- handoff packaging support
-- freshness and invalidation signaling for Cortex-owned artifacts
-- privacy-preserving diagnostics for Cortex-owned surfaces
-
-Cortex does not own:
-
-- semantic interpretation
-- model authority
-- workflow sequencing
-- retry or queue semantics
-- executor selection
-- downstream execution ownership
-- canonical business truth
-- broad surveillance authority
-
-## Doctrine line
-
-The governing doctrines are:
-
-- service-only visibility
-- syntax before semantics
-- fail closed over convenience
-- retrieval infrastructure, not retrieval authority
-- explicit invalidation over assumed freshness
-- default-denied observation
-- bounded reverse signaling only
-- informational service status, not control-plane behavior
-
-## Cross-service boundaries
-
-### DF Local Foundation
-
-Provides substrate support.
-Does not absorb Cortex file-intelligence logic.
-
-### NeuronForge Local
-
-Consumes syntax-level packages for semantic work.
-Does not make Cortex a semantic authority.
-
-### FA Local
-
-Owns policy-gated execution routing.
-Does not delegate execution authority into Cortex.
-
-## Anti-drift warning
-
-Any proposal that turns Cortex into a semantic surface, workflow router, retry coordinator, surveillance surface, status-control plane, or generalized transform sink should be rejected unless the architecture is explicitly reworked.
-
-No automatic next slice is implied by the current runtime baseline.
-Further runtime expansion must be explicit, narrow, and grounded back to the constitutional plan.
 
 ---
 
@@ -344,6 +287,90 @@ This section is grounded in:
 - `docs/source-lanes/README.md`
 - `docs/source-lanes/contract-symmetry-audit.md`
 - `docs/source-lanes/lane-admission-playbook.md`
+
+---
+
+# Runtime Baseline
+
+**Document version:** 2.0 (2026-06-22) - canonical compliance migration
+
+Cortex runtime facts are governed by the authored overview, contract surface, and validation chapters. This section anchors the canonical runtime folder without expanding admitted source lanes.
+
+This chapter is intentionally narrow. Replace it with authored repo truth when implementation, operations, or governance facts are confirmed.
+
+---
+
+# Dependencies
+
+**Document version:** 2.0 (2026-06-22) - canonical compliance migration
+
+Cortex dependency truth must come from the repository manifests and executable validation. This chapter is a canonical placeholder until a dependency inventory is authored.
+
+This chapter is intentionally narrow. Replace it with authored repo truth when implementation, operations, or governance facts are confirmed.
+
+---
+
+# 2. Boundaries and Doctrine
+
+## Authority line
+
+Cortex owns:
+
+- intake contracts
+- syntax-level extraction
+- provenance and completeness signaling
+- retrieval-preparation support
+- handoff packaging support
+- freshness and invalidation signaling for Cortex-owned artifacts
+- privacy-preserving diagnostics for Cortex-owned surfaces
+
+Cortex does not own:
+
+- semantic interpretation
+- model authority
+- workflow sequencing
+- retry or queue semantics
+- executor selection
+- downstream execution ownership
+- canonical business truth
+- broad surveillance authority
+
+## Doctrine line
+
+The governing doctrines are:
+
+- service-only visibility
+- syntax before semantics
+- fail closed over convenience
+- retrieval infrastructure, not retrieval authority
+- explicit invalidation over assumed freshness
+- default-denied observation
+- bounded reverse signaling only
+- informational service status, not control-plane behavior
+
+## Cross-service boundaries
+
+### DF Local Foundation
+
+Provides substrate support.
+Does not absorb Cortex file-intelligence logic.
+
+### NeuronForge Local
+
+Consumes syntax-level packages for semantic work.
+Does not make Cortex a semantic authority.
+
+### FA Local
+
+Owns policy-gated execution routing.
+Does not delegate execution authority into Cortex.
+
+## Anti-drift warning
+
+Any proposal that turns Cortex into a semantic surface, workflow router, retry coordinator, surveillance surface, status-control plane, or generalized transform sink should be rejected unless the architecture is explicitly reworked.
+
+No automatic next slice is implied by the current runtime baseline.
+Further runtime expansion must be explicit, narrow, and grounded back to the constitutional plan.
 
 ---
 
@@ -650,3 +677,13 @@ This assembled system doc is therefore a control reference, not a product or roa
 ## Assembly purpose
 
 `doc/cxSYSTEM.md` is intended to give a single assembled system reference without replacing the canonical source files that define the actual doctrine and contracts.
+
+---
+
+# Appendices
+
+**Document version:** 2.0 (2026-06-22) - canonical compliance migration
+
+Appendices hold glossary, cross-reference, and historical notes for Cortex system documentation.
+
+This chapter is intentionally narrow. Replace it with authored repo truth when implementation, operations, or governance facts are confirmed.
