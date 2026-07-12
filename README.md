@@ -1,4 +1,9 @@
-# Cortex
+# bds · Cortex
+
+> **System identity — bds family (Boswell Digital Solutions business system, local-systems tier).**
+> The bounded local file-intelligence, extraction, retrieval-preparation, and handoff-support service; a business/backend local system in the Forge **ecosystem backend**, part of `ecosystem/local-systems`.
+> **Purpose:** bounded local file-intelligence and retrieval-preparation service for Forge applications — intake, syntax-only extraction, one governed retrieval-package form, and truthful service-status.
+> **Not the Forge counterpart:** the public-app support boundary is `apps/public-app-local-support/cortex` (Forge family).
 
 Cortex is the bounded local file-intelligence, extraction, retrieval-preparation, and handoff-support service for Forge applications.
 

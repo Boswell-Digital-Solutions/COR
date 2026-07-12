@@ -43,6 +43,8 @@
 
 # 1. Overview and Charter
 
+> **System identity — bds family (Boswell Digital Solutions business system, local-systems tier).** This service is part of the Forge ecosystem backend in `ecosystem/local-systems`. It is **not** the Forge counterpart `apps/public-app-local-support/cortex`.
+
 ## Purpose
 
 Cortex is the bounded local file-intelligence, extraction, retrieval-preparation, and handoff-support service for Forge applications.
