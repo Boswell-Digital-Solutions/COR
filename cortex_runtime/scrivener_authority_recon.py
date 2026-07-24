@@ -423,7 +423,7 @@ def emit_scrivener_authority_recon_from_source_file(
     if root.findtext("BookmarksFolderUUID"):
         role_surfaces.append("bookmarks")
 
-    direct_missing_targets: list[str] = []
+    direct_missing_targets: set[str] = set()
     for uuid, item in item_by_uuid.items():
         if not isinstance(uuid, str):
             continue
@@ -433,7 +433,23 @@ def emit_scrivener_authority_recon_from_source_file(
         if not data_dir.is_dir():
             continue
         if not (data_dir / "content.rtf").is_file():
-            direct_missing_targets.append(uuid)
+            direct_missing_targets.add(uuid)
+
+    checksum_manifest = data_root / "docs.checksum"
+    if checksum_manifest.is_file():
+        for line in checksum_manifest.read_text(encoding="utf-8").splitlines():
+            relative_path, separator, _expected_hash = line.partition("=")
+            if not separator:
+                continue
+            path_parts = Path(relative_path).parts
+            if len(path_parts) != 2 or path_parts[1] != "content.rtf":
+                continue
+            uuid = path_parts[0]
+            item = item_by_uuid.get(uuid)
+            if item is None or item.get("Type") != "Text":
+                continue
+            if not (data_root / uuid / "content.rtf").is_file():
+                direct_missing_targets.add(uuid)
 
     binder_summary = {
         "binder_item_count": len(all_items),
