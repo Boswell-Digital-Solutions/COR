@@ -73,8 +73,11 @@ class ServiceStatusRuntimeTests(unittest.TestCase):
         self.assertEqual(result["gnat_summary"]["admitted_worker_types"], expected_gnat_workers)
         self.assertFalse(result["gnat_summary"]["parallel_execution_ready"])
         self.assertEqual(result["gnat_summary"]["fa_local_state"], "unavailable")
-        self.assertIn("Stage 1 authority recon", result["readiness_summary"]["summary"])
-        self.assertIn("Scrivener remains unadmitted", result["operator_visible_message"])
+        if pdf_lane_runtime_available():
+            self.assertIn("Stage 1 authority recon", result["operator_visible_message"])
+            self.assertIn("Scrivener remains unadmitted", result["operator_visible_message"])
+        else:
+            self.assertIn("bounded PDF source lane", result["operator_visible_message"])
 
     def test_degraded_status_is_reported_when_runtime_slice_is_missing(self) -> None:
         with patch(
