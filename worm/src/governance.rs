@@ -12,9 +12,8 @@ const REQUIRED_DOCS: &[&str] = &[
     "LOCAL_DOCTRINE.md",
     "AUTHORITY_BOUNDARIES.md",
     "README.md",
-    "SYSTEM.md",
     "doc/system/BUILD.sh",
-    "doc/cxSYSTEM.md",
+    "doc/corSYSTEM.md",
 ];
 
 pub fn observe_governance(root: &Path) -> Vec<ClaimObservationInput> {
@@ -81,7 +80,7 @@ fn doc_parity_observation(
     observed_at: i64,
 ) -> ClaimObservationInput {
     let source_dir = root.join("doc/system");
-    let assembled = root.join("doc/cxSYSTEM.md");
+    let assembled = root.join("doc/corSYSTEM.md");
     let source_latest = latest_source_mtime(&source_dir).unwrap_or(0);
     let assembled_mtime = mtime(&assembled).unwrap_or(0);
     let parity_known = source_latest > 0 && assembled_mtime > 0;
@@ -90,12 +89,12 @@ fn doc_parity_observation(
     ClaimObservationInput {
         repository_id: repository_id.to_string(),
         revision_id: None,
-        normalized_path: Some("doc/cxSYSTEM.md".to_string()),
+        normalized_path: Some("doc/corSYSTEM.md".to_string()),
         artifact_id: Some("doc-system-assembly".to_string()),
         file_hash: None,
         language_id: Some("md".to_string()),
         source_scope: "governance_docs".to_string(),
-        claim_target_id: "doc_assembly:doc/cxSYSTEM.md".to_string(),
+        claim_target_id: "doc_assembly:doc/corSYSTEM.md".to_string(),
         claim_class: "doc_parity".to_string(),
         subsystem: Subsystem::GovernanceDocParity,
         polarity: if parity_ready {
@@ -128,7 +127,7 @@ fn doc_parity_observation(
         }),
         evidence: vec![EvidenceRecordInput {
             evidence_kind: EvidenceKind::RuleHit,
-            reference: "doc/system -> doc/cxSYSTEM.md".to_string(),
+            reference: "doc/system -> doc/corSYSTEM.md".to_string(),
             strength_score: if parity_known { 0.88 } else { 0.45 },
             payload: serde_json::json!({ "observer": "governance_doc_parity_v1" }),
         }],

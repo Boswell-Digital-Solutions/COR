@@ -1,19 +1,15 @@
         #!/usr/bin/env bash
         set -euo pipefail
 
-        # Assembles the compiled system reference (designation cx).
+        # Assembles the compiled system reference (designation cor).
         # Fail-closed: missing structure, designation/output mismatch, or snapshot
         # validation failure aborts the build with BUILD_FAILED on stderr.
 
         PARTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
         ROOT_DIR="$(cd "$PARTS_DIR/../.." && pwd)"
-        DESIGNATION="cx"
-        OUTPUT="${OUTPUT:-doc/cxSYSTEM.md}"
+        DESIGNATION="cor"
+        OUTPUT="${OUTPUT:-doc/corSYSTEM.md}"
         VALIDATOR="$PARTS_DIR/validate_snapshots.sh"
-        COMPATIBILITY_OUTPUTS=(
-  "SYSTEM.md"
-  "doc/SYSTEM.md"
-)
 
         fail() { echo "BUILD_FAILED: $1" >&2; exit 1; }
 
@@ -44,12 +40,5 @@
         if [ -f "$VALIDATOR" ]; then bash "$VALIDATOR" "$TMP_OUTPUT" || fail "snapshot validation failed"; else fail "missing validator $VALIDATOR"; fi
         cp "$TMP_OUTPUT" "$ROOT_DIR/$OUTPUT"
         chmod 664 "$ROOT_DIR/$OUTPUT"
-        for compatibility_output in "${COMPATIBILITY_OUTPUTS[@]}"; do
-          [ -n "$compatibility_output" ] || continue
-          [ "$compatibility_output" = "$OUTPUT" ] && continue
-          mkdir -p "$(dirname "$ROOT_DIR/$compatibility_output")"
-          cp "$TMP_OUTPUT" "$ROOT_DIR/$compatibility_output"
-          chmod 664 "$ROOT_DIR/$compatibility_output"
-        done
         LINE_COUNT=$(wc -l < "$ROOT_DIR/$OUTPUT")
         echo "BUILD_OK designation=${DESIGNATION} output=${OUTPUT} parts=${PART_COUNT} lines=${LINE_COUNT}"

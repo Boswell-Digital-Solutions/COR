@@ -300,4 +300,4 @@ This assembled system doc is therefore a control reference, not a product or roa
 
 ## Assembly purpose
 
-`doc/cxSYSTEM.md` is intended to give a single assembled system reference without replacing the canonical source files that define the actual doctrine and contracts.
+`doc/corSYSTEM.md` is intended to give a single assembled system reference without replacing the canonical source files that define the actual doctrine and contracts.
