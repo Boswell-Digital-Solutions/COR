@@ -1,13 +1,13 @@
         # Cortex - Compiled System Reference
 
-        **Designation:** cx
+        **Designation:** cor
         **Document role:** Canonical compiled technical reference for the Cortex local file-intelligence service
         **Source:** `doc/system/`
         **Build command:** `bash doc/system/BUILD.sh`
         **Document version:** 2.0 (2026-06-22) - canonical compliance migration
         **Protocol:** BDS Documentation Protocol v2.0; BDS Repo Documentation System Canonical Compliance Standard
 
-        > **Generated artifact warning:** `doc/cxSYSTEM.md` is assembled output. Edit
+        > **Generated artifact warning:** `doc/corSYSTEM.md` is assembled output. Edit
         > the source modules under `doc/system/` and rebuild. Hand edits to the
         > compiled artifact are overwritten by the next build.
 
@@ -15,7 +15,7 @@
 
         - Command: `bash doc/system/BUILD.sh`
         - Validation: `bash doc/system/validate_snapshots.sh` runs during assembly
-        - Primary output: `doc/cxSYSTEM.md`
+        - Primary output: `doc/corSYSTEM.md`
 
         This `doc/system/` tree is the canonical source of truth for Cortex. It uses
         explicit **truth classes**: canonical facts define repo role, authority
@@ -678,7 +678,7 @@ This assembled system doc is therefore a control reference, not a product or roa
 
 ## Assembly purpose
 
-`doc/cxSYSTEM.md` is intended to give a single assembled system reference without replacing the canonical source files that define the actual doctrine and contracts.
+`doc/corSYSTEM.md` is intended to give a single assembled system reference without replacing the canonical source files that define the actual doctrine and contracts.
 
 ---
 

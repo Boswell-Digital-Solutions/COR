@@ -239,7 +239,7 @@ Likely docs include:
 - `README.md`
 - `doc/system/03-contract-surface.md`
 - `doc/system/04-validation-and-delivery.md`
-- rebuilt assembled `doc/cxSYSTEM.md` when system-source docs changed
+- rebuilt assembled `doc/corSYSTEM.md` when system-source docs changed
 
 Do not overstate capability.
 
