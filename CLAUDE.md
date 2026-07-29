@@ -1,58 +1,40 @@
-# cortex — Claude Instructions
+# Cortex (COR) — Claude Code Context
 
-## Module Map
+Local file intelligence: crawl, syntax extraction, retrieval prep, WORM audit.
 
-| Module | Surface | Current role |
-| --- | --- | --- |
-| Documentation Stack | `doc/system/`, `SYSTEM.md`, `scripts/context-bundle.sh` | Canonical repo context and build surfaces |
-| Runtime Surface | `app/`, `service/`, `cortex_runtime/`, `api/`, `src/`, `src-tauri/`, or `crates/` | Primary implementation boundary |
-| Data and Schemas | `schemas/`, `models/`, `db/`, `sql/`, `alembic/`, or `migrations/` | Persistence and validation surfaces |
-| Governance and Specs | `docs/`, `governance/`, `DECISIONS/`, `prompts/`, `evals/`, `analytics/`, or `registry/` | Repo doctrine, experiments, and supporting design material |
-| Verification | `tests/`, `fixtures/`, `evidence/`, `audit/`, or `reports/` | Test and audit surfaces |
+> **Scope is bounded and frequently misread.** COR does **not** plan, sequence, or select
+> executors — that is FLO's job. COR prepares and extracts; something else decides.
 
-## Coding Standards
+> **Not `forge-cortex`.** Same brand, two families. This is the business-side system at
+> `ecosystem/local-systems/COR`; `apps/public-app-local-support/forge-cortex` is the public-app
+> support variant. Path decides which one owns the behaviour.
 
-- Treat `doc/system/` part files as canonical; rebuild root `SYSTEM.md` with `bash doc/system/BUILD.sh`
-- Keep documentation in present tense and aligned to implemented reality
-- Prefer bounded patches over broad rewrites unless a file is clearly scaffold-only
-- Do not bypass repo-local authority boundaries documented in `SYSTEM.md`
+Canonical reference: `doc/corSYSTEM.md`, assembled from `doc/system/` via `bash doc/system/BUILD.sh`.
+Contracts: [`schemas/`](schemas/) — `gnat-run-request`, `gnat-run-plan`, `gnat-dispatch-envelope`,
+`gnat-run-status`, `gnat-run-summary`, `gnat-cache-record`, `extraction-result`,
+`embedded-diagnostics`. Read the schema before changing a payload.
 
-## File Conventions
+---
 
-- Canonical system docs live under `doc/system/`
-- Root `SYSTEM.md` is a build artifact
-- Supporting design material lives under `docs/`
-- Repo automation scripts live under `scripts/`
-- Tests live under `tests/` when present
+## Boundaries
 
-## Context Loading
+- Gnats are **bounded workers**. Keep each one inside its declared capability; do not grow one
+  into a general-purpose executor.
+- The WORM audit trail is write-once — append, never amend.
+- Do not invent undocumented APIs, tables, routes, or environment variables.
+
+---
+
+## Verification
 
 ```bash
-# Show available sections and presets
-./scripts/context-bundle.sh --list
-
-# Core bundle
-./scripts/context-bundle.sh --preset core
-
-# Documentation or testing-focused bundles
-./scripts/context-bundle.sh --preset docs
-./scripts/context-bundle.sh --preset testing
+make validate && make test-runtime
 ```
 
-## Ecosystem Rules
+That is what `.github/workflows/ci.yml` runs, plus the repo-crawler and WORM targets.
+`make test-gnats` narrows to the Gnat suites; `make benchmark-gnats` regenerates the parallel
+proof in `docs/benchmarks/`.
 
-- Keep cross-repo integrations explicit and documented
-- Do not invent undocumented APIs, tables, routes, or environment variables
-- If a runtime contract changes, update `doc/system/`, rebuild `SYSTEM.md`, and keep `CLAUDE.md` current
-
-## Testing Expectations
-
-- Run the repo's existing tests when available before claiming a change is complete
-- Keep documentation build and context-bundle scripts working
-- Expand test documentation in `SYSTEM.md` as exact suites and commands are cataloged
-
-## Change Protocol
-
-- Edit `doc/system/` part files, not the generated root `SYSTEM.md`
-- Rebuild `SYSTEM.md` after documentation changes
-- Keep new docs honest about current implementation state
+```bash
+./scripts/context-bundle.sh --list
+```
