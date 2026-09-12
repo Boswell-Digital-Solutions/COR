@@ -220,13 +220,14 @@ Future lane work is now expected to pass a reusable admission playbook before im
 
 ## External service-status projection (FC-LTA-P007)
 
-Cortex exposes exactly one HTTP route: `GET /health/service-status`, on port 8006.
-This is a new, operator-authorized exception. Cortex had no HTTP surface before this route.
+Cortex exposes this projection through `cortex_runtime/canonical_service_status.py`.
+Forge_Command reads it the same way it already reads every other Cortex signal: as a CLI subprocess.
+It runs `python -m cortex_runtime.canonical_service_status` and parses the one line of JSON on stdout.
+Cortex adds no HTTP surface for this. It stays a CLI and file producer only.
 
-The route serves `cortex_runtime/http_app.py`.
-It calls `cortex_runtime/canonical_service_status.py`.
 That module reads the same real state `emit_service_status()` already computes.
 It keeps only the fields `forge-local-systems-runtime`'s external `service-status.schema.json` defines.
+It remaps `degraded_subtype` to that schema's own vocabulary when Cortex reports one.
 It never computes a new state.
 It never adds a field the internal contract does not already have.
 
@@ -235,9 +236,9 @@ It is a different, narrower contract than Cortex's own `schemas/service-status.s
 The internal contract adds `runtime_surface_summary`, `watcher_summary`, and `gnat_summary`.
 The external contract does not define those fields and forbids extra properties.
 The projection drops them; it does not hide a real state, it narrows the shape.
-
-This route falls under `CONTROL_SURFACE.md`'s allowed "readiness and degraded-state indicators" class.
-Adding a second route is a new decision. It is not an extension of this one.
+The internal contract also uses its own `degraded_subtype` vocabulary.
+The external contract uses a different one for the same real conditions.
+The projection remaps known values; it fails closed on any value it does not recognize.
 
 ## Handoff envelope
 

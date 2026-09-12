@@ -14,11 +14,20 @@ on). The canonical schema is a DIFFERENT, external contract
 onto it by keeping only the fields both schemas share and remapping
 `degraded_subtype` to its canonical name, never inventing or hiding a real
 state.
+
+Cortex is a CLI/file-producer service by design (see `health_cli.py`'s own
+docstring) -- there is no HTTP surface here and none is added. Forge_Command
+reads this module's projection the same way it already reads every other
+Cortex signal: by spawning `python -m cortex_runtime.canonical_service_status`
+as a subprocess and parsing its one line of stdout JSON (the same mechanism
+`commands/health.rs::probe_cli_producer` already uses for `health_cli.py`).
 """
 
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -117,3 +126,23 @@ def build_canonical_service_status_envelope() -> dict[str, Any]:
             "Projected envelope does not conform to the canonical schema: " + "; ".join(messages)
         )
     return envelope
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    return argparse.ArgumentParser(
+        description="Emit Cortex's real status truth projected onto forge-local-systems-runtime's "
+        "canonical service-status schema (FC-LTA-P007)."
+    )
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = _build_parser()
+    parser.parse_args(argv)
+
+    result = build_canonical_service_status_envelope()
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0 if result["state"] == "ready" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
