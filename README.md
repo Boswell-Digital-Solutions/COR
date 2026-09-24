@@ -7,6 +7,14 @@
 
 Cortex is the bounded local file-intelligence, extraction, retrieval-preparation, and handoff-support service for Forge applications.
 
+## Documentation Contract
+
+- **Repo type:** Bounded local service — file-intelligence, extraction, and retrieval-preparation for the bds business/backend local-systems tier.
+- **Authority boundary:** Owns local source-lane admission, syntax-only extraction, retrieval-package assembly, and truthful service-status for its own admitted surfaces. Does not own semantic authoring, model routing, or public application UX. Distinct from `apps/public-app-local-support/forge-cortex`, the Forge public-app counterpart.
+- **Deep reference:** `PROJECT_CHARTER.md`, `LOCAL_DOCTRINE.md`, `AUTHORITY_BOUNDARIES.md`, and `doc/system/` for the compiled technical reference.
+- **README role:** Entrypoint overview. The constitutional artifacts and `doc/system/` are authoritative for deeper detail.
+- **Truth note:** Slice/wave status lines above are snapshot facts as of the commit that wrote them, not timeless invariants.
+
 This directory starts with constitutional artifacts first:
 
 - project charter
