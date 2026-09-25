@@ -25,13 +25,13 @@
 
         | Part | File | Contents |
         | --- | --- | --- |
-        | §1 | `00_overview/01-overview-charter.md` | 1. Overview and Charter |
-| §2 | `10_service-contract/03-contract-surface.md` | 3. Contract Surface |
-| §3 | `20_runtime/05-runtime-baseline.md` | Runtime Baseline |
-| §4 | `30_dependencies/06-dependencies.md` | Dependencies |
-| §5 | `40_governance/02-boundaries-and-doctrine.md` | 2. Boundaries and Doctrine |
-| §6 | `50_operations/04-validation-and-delivery.md` | 4. Validation and Delivery |
-| §7 | `99_appendices/90-appendices.md` | Appendices |
+        | §1 | `01-overview-charter.md` | 1. Overview and Charter |
+| §2 | `03-contract-surface.md` | 3. Contract Surface |
+| §3 | `05-runtime-baseline.md` | Runtime Baseline |
+| §4 | `06-dependencies.md` | Dependencies |
+| §5 | `02-boundaries-and-doctrine.md` | 2. Boundaries and Doctrine |
+| §6 | `04-validation-and-delivery.md` | 4. Validation and Delivery |
+| §7 | `90-appendices.md` | Appendices |
 
         ## Quick Assembly
 
