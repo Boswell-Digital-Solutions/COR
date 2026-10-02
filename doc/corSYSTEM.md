@@ -682,6 +682,37 @@ This assembled system doc is therefore a control reference, not a product or roa
 
 `doc/corSYSTEM.md` is intended to give a single assembled system reference without replacing the canonical source files that define the actual doctrine and contracts.
 
+## Which CI runs for which change
+
+A change that touches only documentation runs the Documentation CI and no code CI.
+A change that touches any other file runs the code CI.
+A change that touches both runs both.
+If the scope is unknown, the code CI runs.
+
+The code CI is `.github/workflows/ci.yml`.
+It has a workflow-level `paths` filter on `push` and `pull_request`.
+The filter includes `**` and then removes `docs/**`, `doc/**` and `**/*.md`.
+The last matching pattern wins, so the re-includes come last.
+A change to `.github/workflows/**` is code and runs the code CI.
+
+The filter re-includes two paths because code reads Markdown there:
+
+- `tests/**` holds Markdown fixtures, for example `tests/runtime/fixtures/sample-note.md`. The runtime tests and the benchmark scripts read them.
+- `fixtures/**` holds the sanitized Scrivener projects, and some files in them are Markdown. `test_scrivener_authority_recon.py` walks them.
+
+The Documentation CI is `.github/workflows/documentation.yml`.
+It runs on changes to `docs/**`, `doc/**`, `**/*.md` and its own file.
+It runs `bash doc/system/BUILD.sh`.
+It fails if `git diff --exit-code -- doc` shows a difference.
+The assembled `doc/corSYSTEM.md` must be built from its parts and committed.
+
+No scheduled run exists.
+No secret scan or other security scan exists in this repository.
+If a scan is added, it must run on every change, documentation included.
+
+Do not add a required check on a path-filtered workflow.
+A workflow that does not start leaves the check pending, and the pending check blocks the merge.
+
 ---
 
 # Runtime Baseline
