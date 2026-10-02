@@ -3,8 +3,26 @@ name: CI
 on:
   push:
     branches: [master]
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!doc/**'
+      - '!**/*.md'
+      # Test fixtures that are Markdown: tests and the benchmark scripts read them.
+      - 'tests/**'
+      # Scrivener fixtures (some are Markdown): test_scrivener_authority_recon walks them.
+      - 'fixtures/**'
   pull_request:
     branches: [master]
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!doc/**'
+      - '!**/*.md'
+      # Test fixtures that are Markdown: tests and the benchmark scripts read them.
+      - 'tests/**'
+      # Scrivener fixtures (some are Markdown): test_scrivener_authority_recon walks them.
+      - 'fixtures/**'
 
 permissions:
   contents: read
