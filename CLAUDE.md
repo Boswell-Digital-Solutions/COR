@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Repo Identity
+
+- Default branch: master
+
 ## Project Overview
 
 Cortex (COR) is the bounded local file-intelligence service for the Forge ecosystem: intake validation, syntax-only extraction, one governed retrieval-package emission form, and truthful service-status reporting, plus a write-once (WORM) audit trail. **Scope is bounded and frequently misread — COR does not plan, sequence, or select executors (that's FLO's job); it prepares and extracts, something else decides.** This is the business-side system at `ecosystem/local-systems/COR`; it is not `forge-cortex` (`apps/public-app-local-support/forge-cortex` is the separate public-app support variant with the same brand — the path decides which one owns the behavior).
